@@ -1,29 +1,32 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  /* config options here */
-  reactCompiler: true,
   images: {
     remotePatterns: [
       {
         protocol: 'https',
         hostname: 'cdn.konksi.com',
         pathname: '/**',
-
       },
       {
-        protocol: "https",
-        hostname: "picsum.photos",
-      },{
-        protocol: "https",
-        hostname: "picsum.photos",
-      },{
-        protocol: "https",
-        hostname: "storage.idcloud.kantor",
-      },{
-        protocol: "https",
-        hostname: "is3.cloudhost.id",
-        pathname: "/**",
-      }
+        protocol: 'https',
+        hostname: 'picsum.photos',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'storage.idcloud.kantor',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'is3.cloudhost.id',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.gstatic.com',
+        pathname: '/**',
+      },
     ],
   },
 };
