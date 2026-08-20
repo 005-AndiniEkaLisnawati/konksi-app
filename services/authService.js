@@ -1,4 +1,4 @@
-import { query } from '@/lib/db';
+import pool from '@/lib/db';
 
 // Helper membuat username unik dari email atau nama
 async function generateUniqueUsername(email, name) {
@@ -12,7 +12,7 @@ async function generateUniqueUsername(email, name) {
   let counter = 1;
 
   while (!isUnique) {
-    const { rows } = await query(
+    const { rows } = await pool.query(
       'SELECT id FROM auth.affiliators WHERE username = $1 LIMIT 1',
       [username]
     );
@@ -32,7 +32,7 @@ export async function findOrCreateGoogleUser(profile) {
   const { email, name, picture } = profile;
 
   // 1. Cek ketersediaan user berdasarkan email
-  const { rows } = await query(
+  const { rows } = await pool.query(
     'SELECT * FROM auth.affiliators WHERE email = $1 LIMIT 1',
     [email]
   );
@@ -52,7 +52,7 @@ export async function findOrCreateGoogleUser(profile) {
       RETURNING *
     `;
 
-    const newResult = await query(insertSql, [
+    const newResult = await pool.query(insertSql, [
       name,
       generatedUsername,
       email,
@@ -62,7 +62,7 @@ export async function findOrCreateGoogleUser(profile) {
     user = newResult.rows[0];
   } else {
     // 3. Jika user lama -> Update last_login_at
-    await query(
+    await pool.query(
       'UPDATE auth.affiliators SET last_login_at = NOW() WHERE id = $1',
       [user.id]
     );
