@@ -3,8 +3,9 @@ import React from 'react'
 const page = () => {
   return (
     <div>
-        
-        <h1>Testing</h1>
+       <h1>
+        Transaction
+       </h1>
     </div>
   )
 }

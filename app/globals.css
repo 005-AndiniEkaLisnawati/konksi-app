@@ -56,6 +56,24 @@
   --color-destructive-foreground: var(--destructive-foreground);
 
   --color-ring-offset-background: var(--background);
+  --animate-bounce-slow: bounce-slow 3s infinite ease-in-out;
+  --animate-float: float 4s infinite ease-in-out;
+  --animate-spin-slow: spin-slow 8s linear infinite;
+
+}
+@keyframes bounce-slow {
+  0%, 100% { transform: translateY(-5%); }
+  50% { transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes spin-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 :root {
