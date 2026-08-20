@@ -171,25 +171,25 @@ export default function MaximizeEarningsCarousel() {
                   </div>
                 </div>
 
-                {/* Content Area */}
-                <div className="p-4 flex flex-col justify-between flex-1 bg-card/50 relative z-10">
-                  <div>
-                    <h3 className="text-xs font-bold text-foreground leading-snug mb-1.5 group-hover:text-primary transition-colors duration-200">
-                      {item.title}
-                    </h3>
-                    <p className="text-[11px] text-muted-foreground leading-relaxed line-clamp-2">
-                      {item.desc}
-                    </p>
-                  </div>
+               {/* Content Area */}
+<div className="p-4 flex flex-col justify-between flex-1 bg-card/50 relative z-10">
+  <div>
+    <h3 className="text-xs font-bold text-foreground leading-snug mb-1.5 group-hover:text-primary transition-colors duration-200">
+      {item.title}
+    </h3>
+    <p className="text-[11px] text-muted-foreground leading-relaxed line-clamp-2">
+      {item.desc}
+    </p>
+  </div>
 
-                  <Link
-                    href="/login"
-                    className="inline-flex items-center gap-1.5 text-[11px] font-bold text-primary mt-3 group/link"
-                  >
-                    <span>Pelajari Selengkapnya</span>
-                    <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/link:translate-x-1" />
-                  </Link>
-                </div>
+  <Link
+    href="/login"
+    className="inline-flex items-center gap-1.5 text-[11px] font-bold text-primary mt-3 group/link"
+  >
+    <span>Lihat Komisi & Layanan</span>
+    <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/link:translate-x-1" />
+  </Link>
+</div>
               </motion.div>
             );
           })}
