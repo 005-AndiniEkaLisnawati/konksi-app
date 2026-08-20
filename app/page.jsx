@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import AffiliatorMarquee from '@/components/splashScreen/AffiliatorMarquee';
 import HowItWorksSection from '@/components/splashScreen/HowItWorksSection';
+import MaximizeEarningsCarousel from '@/components/splashScreen/MaximizeEarningsCarousel';
 
 export default function SplashPage() {
   return (
@@ -101,7 +102,7 @@ export default function SplashPage() {
       </div>
       <div>
         <p className="text-[10px] text-muted-foreground font-medium">Sistem Afiliasi Otomatis</p>
-        <p className="text-xs font-bold text-foreground">500+ Afiliator Sudah Cuan</p>
+        <a className="text-xs font-bold text-foreground" href='#Affiliator'>500+ Afiliator Sudah Cuan</a>
       </div>
     </div>
     <span className="text-[10px] font-bold text-emerald-500 bg-emerald-500/10 px-2 py-1 rounded-full border border-emerald-500/20 shrink-0">
@@ -132,12 +133,21 @@ export default function SplashPage() {
       </section>
 
       {/* 6. AFFILIATOR MARQUEE */}
+      <div id='Affiliator'>
       <AffiliatorMarquee />
+
+      </div>
 
       {/* 3. ALUR CARA KERJA (STEP-BY-STEP) */}
       <section className="bg-background">
         <HowItWorksSection />
       </section>
+
+      {/* 7. MAXIMIZE EARNINGS CAROUSEL */}
+     
+      <MaximizeEarningsCarousel />
+      
+        
 
       {/* 4. KATALOG YANG BISA DIPROMOSIKAN */}
       <section className="px-5 py-8 bg-card/40 border-t border-border/40">
