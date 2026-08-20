@@ -1,3 +1,4 @@
+// app/layout.jsx
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import BottomNav from "@/components/ui/layout/BottomNav";
@@ -25,13 +26,13 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="id">
-      <body 
-        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased bg-[#0c0d12] text-foreground min-h-screen flex justify-center`}
-      >
-        {/* Main Layout Container - Terunci di 412px dengan Border Samping */}
-        <main className="w-full max-w-[412px] min-h-screen bg-background text-foreground relative pb-20 border-x border-border/40 shadow-2xl overflow-x-hidden">
-          {children}
+    <html lang="id" className="bg-[#0c0d12]">
+      <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased bg-[#0c0d12] text-foreground flex justify-center m-0 p-0`}>
+        {/* Kontainer Utama - Hilangkan pb-20 jika membuat gap, ganti dengan padding pas di dalam elemen halaman */}
+        <main className="w-full max-w-[412px] min-h-screen bg-background text-foreground relative border-x border-border/40 shadow-2xl overflow-x-hidden flex flex-col">
+          <div className="flex-1 flex flex-col">
+            {children}
+          </div>
           <BottomNav />
         </main>
       </body>

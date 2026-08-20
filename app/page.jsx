@@ -16,9 +16,12 @@ import {
   CheckCircle2,
   ArrowRight
 } from 'lucide-react';
+import FaqSection from '@/components/splashScreen/FaqSection';
 import AffiliatorMarquee from '@/components/splashScreen/AffiliatorMarquee';
 import HowItWorksSection from '@/components/splashScreen/HowItWorksSection';
 import MaximizeEarningsCarousel from '@/components/splashScreen/MaximizeEarningsCarousel';
+import KonksiShowcase from '@/components/splashScreen/KonksiShowcase';
+import Footer from '@/components/splashScreen/Footer';
 
 export default function SplashPage() {
   return (
@@ -146,125 +149,14 @@ export default function SplashPage() {
       {/* 7. MAXIMIZE EARNINGS CAROUSEL */}
      
       <MaximizeEarningsCarousel />
-      
-        
 
-      {/* 4. KATALOG YANG BISA DIPROMOSIKAN */}
-      <section className="px-5 py-8 bg-card/40 border-t border-border/40">
-        <div className="mb-4">
-          <span className="text-[10px] font-bold text-primary tracking-wider uppercase">Pilihan Serba Ada</span>
-          <h2 className="text-base font-extrabold text-foreground">Katalog Siap Sebar</h2>
-        </div>
+      <KonksiShowcase />
 
-        <div className="grid grid-cols-2 gap-2.5">
-          {[
-            { label: 'Jasa & Home Service', detail: 'Potong rambut, Kebersihan, dll', bg: 'bg-blue-500/10 text-blue-600' },
-            { label: 'Produk Digital', detail: 'E-Course, e-Book, Template', bg: 'bg-emerald-500/10 text-emerald-600' },
-            { label: 'Webinar & Event', detail: 'Tiket workshop, seminar', bg: 'bg-purple-500/10 text-purple-600' },
-            { label: 'Akomodasi & Venue', detail: 'Sewa tempat, ruang meeting', bg: 'bg-amber-500/10 text-amber-600' },
-          ].map((cat, idx) => (
-            <div key={idx} className="p-3 rounded-xl bg-background border border-border/60">
-              <span className={`inline-block text-[10px] font-bold px-2 py-0.5 rounded-full mb-1.5 ${cat.bg}`}>
-                {cat.label}
-              </span>
-              <p className="text-[11px] font-medium text-foreground leading-tight">{cat.detail}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <FaqSection />
 
-      {/* 5. DUA SISI EKOSISTEM (MITRA & AFILIATOR) */}
-      <section className="px-5 py-8 border-t border-border/40 bg-background">
-        <div className="p-4 rounded-2xl bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border border-primary/20">
-          <h3 className="text-xs font-bold text-foreground mb-1">Kenapa Harus Konksi Affiliate?</h3>
-          <ul className="space-y-2 mt-3 text-[11px] text-muted-foreground">
-            <li className="flex items-center gap-2">
-              <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0" />
-              <span><strong>Transparansi Penuh:</strong> Dashboard real-time tanpa komisi tersembunyi.</span>
-            </li>
-            <li className="flex items-center gap-2">
-              <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0" />
-              <span><strong>Fitur Diskon Mandiri:</strong> Bisa kasih potongan harga ke pembeli dari bagian komisimu.</span>
-            </li>
-            <li className="flex items-center gap-2">
-              <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0" />
-              <span><strong>Pencairan Mudah:</strong> Withdraw komisi langsung ke rekening bank atau e-wallet.</span>
-            </li>
-          </ul>
-        </div>
-      </section>
+      <Footer />
 
-      {/* 6. FAQ RINGKAS */}
-      <section className="px-5 py-8 bg-card/30 border-t border-border/40">
-        <h2 className="text-base font-extrabold text-foreground mb-4">Sering Ditanyakan (FAQ)</h2>
-        <div className="space-y-2.5">
-          {[
-            { q: 'Apakah daftar jadi Afiliator dipungut biaya?', a: '100% Gratis! Kamu bisa langsung buat biolink dan promosi dalam hitungan menit.' },
-            { q: 'Bagaimana cara pembeli bertransaksi?', a: 'Pembeli cukup buka link konksi.com/username milikmu, pilih layanan, dan checkout.' },
-            { q: 'Berapa besaran komisi yang didapatkan?', a: 'Komisi bervariasi sesuai kesepakatan dengan Mitra Jasa (bisa persentase atau nominal Rp tetap).' },
-          ].map((faq, i) => (
-            <div key={i} className="p-3.5 rounded-xl bg-background border border-border/50">
-              <h3 className="text-xs font-bold text-foreground flex items-center justify-between">
-                <span>{faq.q}</span>
-                <HelpCircle className="w-3.5 h-3.5 text-muted-foreground shrink-0 ml-2" />
-              </h3>
-              <p className="text-[11px] text-muted-foreground mt-1.5 leading-relaxed">{faq.a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
 
-      {/* 7. FOOTER MEREK PT KONKSI AKSELERA SINERGI */}
-      <footer className="px-5 pt-8 pb-12 bg-card border-t border-border mt-auto">
-        <div className="mb-6">
-          <div className="relative w-28 h-8 mb-3">
-            <Image
-              src="https://cdn.konksi.com/app_profiles/logo.webp"
-              alt="Konksi Akselera Sinergi"
-              fill
-              className="object-contain dark:brightness-0 dark:invert"
-            />
-          </div>
-          <p className="text-[11px] text-muted-foreground mb-4 leading-relaxed">
-            Platform Afiliasi Jasa Indonesia yang mempertemukan Mitra, Affiliator, dan Pembeli dalam satu ekosistem kolaboratif.
-          </p>
-          <div className="space-y-2 text-xs text-muted-foreground">
-            <div className="flex items-center gap-2">
-              <MessageSquare className="w-4 h-4 text-primary shrink-0" />
-              <span>Halo Konksi (Chat CS 24/7)</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Mail className="w-4 h-4 text-primary shrink-0" />
-              <span>support@konksi.com</span>
-            </div>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-2 gap-6 pt-4 border-t border-border/50 text-xs">
-          <div>
-            <h4 className="font-bold text-foreground mb-2.5">Menu Utama</h4>
-            <ul className="space-y-2 text-muted-foreground text-[11px]">
-              <li><Link href="#" className="hover:text-foreground">Daftar Afiliator</Link></li>
-              <li><Link href="#" className="hover:text-foreground">Daftar Mitra Jasa</Link></li>
-              <li><Link href="#" className="hover:text-foreground">Tentang Konksi</Link></li>
-              <li><Link href="#" className="hover:text-foreground">Blog & Tips Cuan</Link></li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-bold text-foreground mb-2.5">Bantuan & Legal</h4>
-            <ul className="space-y-2 text-muted-foreground text-[11px]">
-              <li><Link href="#" className="hover:text-foreground">Pusat Bantuan FAQ</Link></li>
-              <li><Link href="#" className="hover:text-foreground">Syarat & Ketentuan</Link></li>
-              <li><Link href="#" className="hover:text-foreground">Kebijakan Privasi</Link></li>
-              <li><Link href="#" className="hover:text-foreground">Disclaimer</Link></li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="mt-8 pt-4 border-t border-border/40 text-center text-[10px] text-muted-foreground">
-          © 2025 PT Konksi Akselera Sinergi. All rights reserved.
-        </div>
-      </footer>
 
     </div>
   );

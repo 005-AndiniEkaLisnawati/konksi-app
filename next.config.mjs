@@ -26,7 +26,11 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'www.gstatic.com',
         pathname: '/**',
-      },
+      },{
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        pathname: '/**',
+      }
     ],
   },
 };

@@ -166,7 +166,7 @@ export default function MaximizeEarningsCarousel() {
 
                   {/* Badge */}
                   <div className="relative z-10 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/40 backdrop-blur-md text-white text-[10px] font-bold w-fit border border-white/20 shadow-sm">
-                    <Icon className="w-3.5 h-3.5 text-primary" />
+                    <Icon className="w-3.5 h-3.5 text-white" />
                     <span>{item.badge}</span>
                   </div>
                 </div>
