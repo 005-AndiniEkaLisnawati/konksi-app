@@ -6,7 +6,7 @@ import { Home, Compass, Receipt, Wallet, User } from 'lucide-react';
 
 const NAV_ITEMS = [
   { label: 'Beranda', href: '/home', icon: Home },
-  { label: 'Feeds', href: '/feeds', icon: Compass },
+  { label: 'Feeds', href: '/feeds/katalog', icon: Compass },
   { label: 'Transaksi', href: '/transaction', icon: Receipt },
   { label: 'Saldo', href: '/balance', icon: Wallet },
   { label: 'Profil', href: '/profile', icon: User },

@@ -1,6 +1,9 @@
 'use client';
+import { useRouter } from 'next/navigation';
+
 
 export default function LoginPage() {
+  const router = useRouter();
   const handleGoogleLogin = () => {
     const ua = navigator.userAgent || '';
     const isWebView = /wv|Android.*Chrome\/[.0-9]* Mobile|iPhone.*Safari/i.test(ua) && !/Safari/i.test(ua);
@@ -16,7 +19,7 @@ export default function LoginPage() {
         <p className="text-sm text-gray-500 mb-6">Masuk atau daftarkan akun afiliator kamu.</p>
 
         <button
-          onClick={handleGoogleLogin}
+          onClick={() => router.push('/home')}
           className="w-full flex items-center justify-center gap-3 py-3 border border-gray-300 rounded-xl hover:bg-gray-50 transition font-medium text-gray-700"
         >
           <img 
