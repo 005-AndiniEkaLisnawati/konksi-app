@@ -12,10 +12,23 @@ import {
   Coins,
   MousePointerClick,
   ArrowDownLeft,
+  Check,
+  Gift
 } from "lucide-react";
 import { Screen, SectionHeader, Card, Stagger, rp } from "@/components/affiliate/ui";
 import { ProductCard } from "@/components/affiliate/cards";
 import { products, activities } from "@/data/mock";
+import { Separator } from "@/components/ui/separator";
+
+const checkInDays = [
+  { day: 1, status: "completed" },
+  { day: 2, status: "upcoming" },
+  { day: 3, status: "upcoming" },
+  { day: 4, status: "upcoming" },
+  { day: 5, status: "upcoming" },
+  { day: 6, status: "upcoming" },
+  { day: 7, status: "reward" },
+];
 
 const quickCategories = [
   { label: "Jasa", icon: ShoppingBag, to: "/feeds/katalog?cat=Jasa" },
@@ -64,7 +77,7 @@ export default function HomePage() {
         <div className="mt-4">
           <Link
             href="/feeds/katalog"
-            className="flex h-11 w-full items-center gap-2 rounded-2xl bg-white px-3.5 text-muted-foreground shadow-sm"
+            className="flex h-11 w-full items-center gap-2 rounded-lg bg-white px-3.5 text-muted-foreground shadow-sm"
           >
             <Search className="h-4 w-4 text-muted-foreground" />
             <span className="text-[13px]">Cari layanan, produk, atau mitra...</span>
@@ -75,7 +88,7 @@ export default function HomePage() {
         <div className="mt-4 grid grid-cols-2 gap-3">
           <Link
             href="/balance"
-            className="flex items-center justify-between rounded-2xl bg-card p-3 text-card-foreground shadow-sm border border-border"
+            className="flex items-center justify-between rounded-lg bg-card p-3 text-card-foreground shadow-sm border border-border"
           >
             <div>
               <p className="text-[10px] text-muted-foreground">Saldo Komisi</p>
@@ -86,7 +99,7 @@ export default function HomePage() {
 
           <Link
             href="/balance"
-            className="flex items-center justify-between rounded-2xl bg-card p-3 text-card-foreground shadow-sm border border-border"
+            className="flex items-center justify-between rounded-lg bg-card p-3 text-card-foreground shadow-sm border border-border"
           >
             <div>
               <p className="text-[10px] text-muted-foreground">Poin Konksi</p>
@@ -99,7 +112,7 @@ export default function HomePage() {
 
       <div className="px-4 -mt-2">
         {/* Quick Menu Icons (Jasa, Tempat, dll) */}
-        <div className="grid grid-cols-4 gap-2 rounded-2xl bg-card p-3 shadow-sm border border-border">
+        <div className="grid grid-cols-4 gap-2 rounded-lg bg-card p-3 shadow-sm border border-border">
           {quickCategories.map(({ label, icon: Icon, to }) => (
             <Link
               key={label}
@@ -117,7 +130,7 @@ export default function HomePage() {
         </div>
 
         {/* Banner Promo / Event */}
-        <div className="mt-4 overflow-hidden rounded-2xl bg-gradient-to-r from-indigo-900 via-primary to-purple-800 p-4 text-white shadow-md relative">
+        <div className="mt-4 overflow-hidden rounded-lg bg-gradient-to-r from-indigo-900 via-primary to-purple-800 p-4 text-white shadow-md relative">
           <div className="max-w-[70%]">
             <span className="rounded-md bg-amber-400 px-2 py-0.5 text-[9px] font-bold text-slate-950 uppercase">
               Event Spesial
@@ -135,26 +148,82 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Daily Check-in Card */}
-        <div className="mt-4 rounded-2xl bg-card p-3.5 border border-border shadow-sm">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-500">
-                <CheckCircle2 className="h-4 w-4" />
-              </span>
-              <div>
-                <p className="text-[12px] font-semibold">Daily Check-in</p>
-                <p className="text-[10px] text-muted-foreground">Check-in setiap hari dan dapatkan poin!</p>
-              </div>
-            </div>
-            <button
-              type="button"
-              className="rounded-full bg-emerald-600 px-3.5 py-1 text-[11px] font-medium text-white shadow-sm"
-            >
-              Check-in
-            </button>
+        <div className="mt-4 rounded-lg bg-card border border-border shadow-sm p-4">
+  {/* Header Check-in */}
+  <div className="flex items-center justify-between">
+    <div className="flex items-center gap-3">
+      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600">
+        <CheckCircle2 className="h-5 w-5" />
+      </span>
+      <div>
+        <p className="text-[13px] font-bold text-foreground">Daily Check-in</p>
+        <p className="text-[11px] text-muted-foreground">Check-in setiap hari dan dapatkan poin!</p>
+      </div>
+    </div>
+    <button
+      type="button"
+      className="rounded-full bg-emerald-500 px-4 py-1.5 text-[11px] font-semibold text-white shadow-sm transition-transform active:scale-95"
+    >
+      Check-in
+    </button>
+  </div>
+
+  {/* Progress Timeline 7 Hari */}
+  <div className="relative mt-6 flex items-center justify-between px-1">
+    {/* Dotted Line Background */}
+    <div className="absolute left-6 right-6 top-4 h-[2px] -translate-y-1/2 border-t-2 border-dashed border-muted/60 z-0"></div>
+
+    {checkInDays.map((item, idx) => (
+      <div key={idx} className="relative z-10 flex flex-col items-center gap-1.5">
+        {item.status === "completed" && (
+          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-100 ring-2 ring-emerald-500 ring-offset-1 ring-offset-card">
+            <Check className="h-4 w-4 text-emerald-600 stroke-[3]" />
           </div>
-        </div>
+        )}
+        {item.status === "upcoming" && (
+          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-card border-2 border-muted-foreground/20 text-muted-foreground/40">
+            <Check className="h-4 w-4 stroke-[3]" />
+          </div>
+        )}
+        {item.status === "reward" && (
+          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-orange-100 border border-orange-200 text-orange-500 shadow-sm">
+            <Gift className="h-4 w-4" />
+          </div>
+        )}
+        <span
+          className={`text-[9px] font-semibold ${
+            item.status === "completed"
+              ? "text-emerald-600"
+              : item.status === "reward"
+              ? "text-orange-500"
+              : "text-muted-foreground"
+          }`}
+        >
+          Hari {item.day}
+        </span>
+      </div>
+    ))}
+  </div>
+
+  <Separator className="my-4" />
+
+  {/* Misi Hari Ini */}
+  <div className="flex items-center justify-between">
+    <div className="flex items-center gap-3">
+      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600">
+        <CheckCircle2 className="h-5 w-5" />
+      </span>
+      <div>
+        <p className="text-[13px] font-bold text-foreground">Misi Hari ini</p>
+        <p className="text-[11px] text-muted-foreground">Selesaikan misi hari ini dan dapatkan ekstra poin!</p>
+      </div>
+    </div>
+    <div className="flex items-center gap-0.5 text-muted-foreground">
+      <span className="text-[12px] font-bold text-foreground mr-1">0/3</span>
+      <ChevronRight className="h-4 w-4" />
+    </div>
+  </div>
+</div>
 
         {/* Jelajahi Layanan Populer */}
         <section className="mt-6">
