@@ -53,8 +53,8 @@ const containerVariants = {
 
 const cardVariants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
     transition: { duration: 0.5, ease: 'easeOut' }
   },
@@ -80,15 +80,15 @@ export default function MaximizeEarningsCarousel() {
   return (
     <section className="relative py-12 px-5 overflow-hidden border-t border-primary/10 bg-gradient-to-b from-primary/10 via-background to-background">
       {/* Dynamic Background Glows */}
-      <motion.div 
+      <motion.div
         animate={{ scale: [1, 1.2, 1], opacity: [0.15, 0.25, 0.15] }}
         transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute top-1/2 -left-20 -translate-y-1/2 w-72 h-72 bg-primary/25 rounded-full blur-[100px] pointer-events-none" 
+        className="absolute top-1/2 -left-20 -translate-y-1/2 w-72 h-72 bg-primary/25 rounded-full blur-[100px] pointer-events-none"
       />
-      <motion.div 
+      <motion.div
         animate={{ scale: [1.2, 1, 1.2], opacity: [0.1, 0.2, 0.1] }}
         transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute bottom-0 right-0 w-80 h-80 bg-blue-500/20 rounded-full blur-[110px] pointer-events-none" 
+        className="absolute bottom-0 right-0 w-80 h-80 bg-blue-500/20 rounded-full blur-[110px] pointer-events-none"
       />
       <div className="absolute inset-0 bg-[radial-gradient(#2563eb_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.05] pointer-events-none" />
 
@@ -133,13 +133,14 @@ export default function MaximizeEarningsCarousel() {
         ref={carouselRef}
         className="relative z-10 overflow-x-auto no-scrollbar scroll-smooth cursor-grab active:cursor-grabbing -mx-5 px-5"
       >
+        {/* Ganti bagian viewport di motion.div carousel */}
         <motion.div
           drag="x"
           dragConstraints={{ right: 0, left: -width }}
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "100px" }} // Pemicu dimajukan 100px sebelum elemen terlihat agar tidak delay
           className="flex gap-5 w-max py-3"
         >
           {tipsData.map((item) => {
@@ -158,9 +159,10 @@ export default function MaximizeEarningsCarousel() {
                     src={item.img}
                     alt={item.title}
                     fill
+                    sizes="(max-width: 640px) 250px, 270px" // <-- Tambahkan baris ini
                     className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                   />
-                  
+
                   {/* Gradient Overlays */}
                   <div className="absolute bg-gradient-to-t from-card via-sky-500/10 to-sky-500/5 inset-0 z-[1]" />
 
@@ -171,25 +173,25 @@ export default function MaximizeEarningsCarousel() {
                   </div>
                 </div>
 
-               {/* Content Area */}
-<div className="p-4 flex flex-col justify-between flex-1 bg-card/50 relative z-10">
-  <div>
-    <h3 className="text-xs font-bold text-foreground leading-snug mb-1.5 group-hover:text-primary transition-colors duration-200">
-      {item.title}
-    </h3>
-    <p className="text-[11px] text-muted-foreground leading-relaxed line-clamp-2">
-      {item.desc}
-    </p>
-  </div>
+                {/* Content Area */}
+                <div className="p-4 flex flex-col justify-between flex-1 bg-card/50 relative z-10">
+                  <div>
+                    <h3 className="text-xs font-bold text-foreground leading-snug mb-1.5 group-hover:text-primary transition-colors duration-200">
+                      {item.title}
+                    </h3>
+                    <p className="text-[11px] text-muted-foreground leading-relaxed line-clamp-2">
+                      {item.desc}
+                    </p>
+                  </div>
 
-  <Link
-    href="/login"
-    className="inline-flex items-center gap-1.5 text-[11px] font-bold text-primary mt-3 group/link"
-  >
-    <span>Lihat Komisi & Layanan</span>
-    <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/link:translate-x-1" />
-  </Link>
-</div>
+                  <Link
+                    href="/login"
+                    className="inline-flex items-center gap-1.5 text-[11px] font-bold text-primary mt-3 group/link"
+                  >
+                    <span>Lihat Komisi & Layanan</span>
+                    <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/link:translate-x-1" />
+                  </Link>
+                </div>
               </motion.div>
             );
           })}

@@ -78,8 +78,8 @@ const containerVariants = {
 
 const cardVariants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
     transition: { duration: 0.5, ease: 'easeOut' }
   },
@@ -114,15 +114,15 @@ export default function KonksiShowcase() {
   return (
     <section className="relative py-12 px-5 overflow-hidden border-t border-primary/10 bg-gradient-to-b from-primary/10 via-background to-background">
       {/* Dynamic Background Glows */}
-      <motion.div 
+      <motion.div
         animate={{ scale: [1, 1.2, 1], opacity: [0.15, 0.25, 0.15] }}
         transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute top-1/2 -left-20 -translate-y-1/2 w-72 h-72 bg-primary/25 rounded-full blur-[100px] pointer-events-none" 
+        className="absolute top-1/2 -left-20 -translate-y-1/2 w-72 h-72 bg-primary/25 rounded-full blur-[100px] pointer-events-none"
       />
-      <motion.div 
+      <motion.div
         animate={{ scale: [1.2, 1, 1.2], opacity: [0.1, 0.2, 0.1] }}
         transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute bottom-0 right-0 w-80 h-80 bg-blue-500/20 rounded-full blur-[110px] pointer-events-none" 
+        className="absolute bottom-0 right-0 w-80 h-80 bg-blue-500/20 rounded-full blur-[110px] pointer-events-none"
       />
       <div className="absolute inset-0 bg-[radial-gradient(#2563eb_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.05] pointer-events-none" />
 
@@ -173,7 +173,7 @@ export default function KonksiShowcase() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "100px" }} // Pemicu dimajukan 100px sebelum elemen terlihat agar tidak delay
           className="flex gap-5 w-max py-3"
         >
           {mockServices.map((item) => (
@@ -193,7 +193,7 @@ export default function KonksiShowcase() {
                   sizes="(max-width: 640px) 250px, 270px"
                   className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                 />
-                
+
                 {/* Gradient Overlays */}
                 <div className="absolute bg-gradient-to-t from-card via-card/20 to-transparent inset-0 z-[1]" />
 
