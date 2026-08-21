@@ -113,19 +113,22 @@ export default function SplashPage() {
     </span>
   </div>
 
-  {/* 5. PRIMARY CTA */}
-  <div className="relative z-10 w-full max-w-[340px] mt-5">
-    <Link 
-      href="/login" 
-      className="flex items-center justify-center gap-2 w-full py-3.5 px-6 rounded-xl bg-primary shadow-md text-primary-foreground font-bold text-sm shadow-lg shadow-primary/30 hover:opacity-95 transition-all active:scale-[0.98]"
-    >
-      <span>Mulai Buat Biolink Affiliate</span>
-      <ArrowRight className="w-4 h-4" />
-    </Link>
-    <p className="text-[10px] text-muted-foreground mt-2 font-medium">
-      Tanpa modal • Verifikasi cepat • Pencairan via e-Wallet/Bank
-    </p>
-  </div>
+<div className="relative z-10 w-full max-w-[340px] mt-5">
+  <Link 
+    href="/login" 
+    className="relative flex items-center justify-center gap-2 w-full py-3.5 px-6 rounded-full font-bold text-md text-white shadow-xl shadow-primary/30 transition-all active:scale-[0.98] hover:opacity-95"
+    style={{
+      background: 'linear-gradient(to bottom, #7c3aed 0%, #a78bfa 45%, #6d28d9 100%)',
+      boxShadow: '0 10px 25px -5px rgba(124, 58, 237, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 0 -2px 4px rgba(0, 0, 0, 0.2)'
+    }}
+  >
+    <span>Mulai Buat Biolink Affiliate</span>
+    <ArrowRight className="w-4 h-4" />
+  </Link>
+  <p className="text-[10px] text-muted-foreground mt-2 font-medium">
+    Tanpa modal • Verifikasi cepat • Pencairan via e-Wallet/Bank
+  </p>
+</div>
 </section>
 
       {/* 2. FILOSOFI REKOMENDASI (MANIFESTO BUKAN AI) */}
