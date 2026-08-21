@@ -1,79 +1,113 @@
 "use client";
 import { useState } from "react";
-import { Sparkles } from "lucide-react";
+import { Sparkles, Clapperboard, Layers } from "lucide-react";
 import {
-  Screen,
   PageHeader,
-  SectionHeader,
-  FilterChip,
   EmptyState,
 } from "@/components/affiliate/ui";
 import { ContentCard } from "@/components/affiliate/cards";
 import { contents, contentCategories } from "@/data/mock";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
-// export const Route = createFileRoute("/feeds/content")({
-//   head: () => ({
-//     meta: [
-//       { title: "Inspirasi Konten Affiliate — Konksi" },
-//       {
-//         name: "description",
-//         content:
-//           "Kumpulan ide video, reels, caption, dan edukasi untuk mempromosikan produk affiliate kamu.",
-//       },
-//       { property: "og:title", content: "Inspirasi Konten Affiliate — Konksi" },
-//       {
-//         property: "og:description",
-//         content: "Feed inspirasi konten untuk affiliate: reels, video, caption, dan tren.",
-//       },
-//       { property: "og:type", content: "website" },
-//       { name: "twitter:card", content: "summary_large_image" },
-//     ],
-//   }),
-//   component: ContentPage,
-// });
+// MOCK DATA: Sumber Konten
+const contentSources = [
+  "Semua Sumber",
+  "Konksi Internal",
+  "TikTok",
+  "Instagram Reels",
+];
 
- export default function ContentPage() {
+export default function ContentPage() {
   const [cat, setCat] = useState("Semua");
-  const list = contents.filter((c) => cat === "Semua" || c.type === cat);
-  const [featured, ...rest] = list;
+  const [source, setSource] = useState("Semua Sumber");
+
+  // Filter Kategori & Sumber
+  const list = contents.filter(
+    (c) => 
+      (cat === "Semua" || c.type === cat) &&
+      (source === "Semua Sumber" || c.source === source)
+  );
 
   return (
-    <Screen>
-      <PageHeader title="Konten" subtitle="Temukan inspirasi untuk promosi" />
+    <>
+      <PageHeader 
+        title="Inspirasi Konten" 
+        subtitle="Ide promosi dari mitra & kreator sosial media" 
+      />
 
-      <div className="no-scrollbar -mx-4 flex gap-2 overflow-x-auto px-4">
-        {contentCategories.map((c) => (
-          <FilterChip key={c} active={cat === c} onClick={() => setCat(c)}>
-            {c}
-          </FilterChip>
-        ))}
+      {/* FILTER SECTION MENGGUNAKAN SHADCN SELECT (Grid 2 Kolom) */}
+      <div className="mt-2 grid grid-cols-2 gap-3">
+        
+        {/* Filter Sumber Konten */}
+        <div className="space-y-1.5">
+          <label className="text-[11px] font-semibold text-muted-foreground flex items-center gap-1.5">
+            <Clapperboard className="h-3.5 w-3.5 text-primary" />
+            Sumber Konten
+          </label>
+          <Select value={source} onValueChange={setSource}>
+            <SelectTrigger className="h-10 bg-card border-border/60 rounded-xl text-xs font-medium">
+              <SelectValue placeholder="Pilih Sumber" />
+            </SelectTrigger>
+            <SelectContent>
+              {contentSources.map((s) => (
+                <SelectItem key={s} value={s} className="text-xs">
+                  {s}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+
+        {/* Filter Format Konten / Kategori */}
+        <div className="space-y-1.5">
+          <label className="text-[11px] font-semibold text-muted-foreground flex items-center gap-1.5">
+            <Layers className="h-3.5 w-3.5 text-primary" />
+            Format
+          </label>
+          <Select value={cat} onValueChange={setCat}>
+            <SelectTrigger className="h-10 bg-card border-border/60 rounded-xl text-xs font-medium">
+              <SelectValue placeholder="Pilih Format" />
+            </SelectTrigger>
+            <SelectContent>
+              {contentCategories.map((c) => (
+                <SelectItem key={c} value={c} className="text-xs">
+                  {c}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+
       </div>
 
-      {!featured ? (
-        <div className="mt-5">
+      {list.length === 0 ? (
+        <div className="mt-12">
           <EmptyState
             icon={Sparkles}
             title="Belum ada konten"
-            description="Pilih kategori lain untuk melihat inspirasi."
+            description="Tidak ada inspirasi untuk filter yang kamu pilih saat ini."
           />
         </div>
       ) : (
-        <>
-          <section className="mt-5">
-            <SectionHeader title="Sedang Populer" action="Semua" />
-            <ContentCard item={featured} index={0} featured />
-          </section>
-
-          <section className="mt-6">
-            <SectionHeader title="Feed Inspirasi" />
-            <div className="space-y-3">
-              {rest.map((c, i) => (
-                <ContentCard key={c.title} item={c} index={i + 1} />
-              ))}
+        /* 
+          SCROLLING SHORTS LAYOUT 
+          Memakai snap-y dan snap-mandatory agar saat discroll di HP 
+          terasa seperti feed TikTok/Reels yang 'nempel' per konten.
+        */
+        <div className="mt-4 -mx-4 px-4 h-[70vh] overflow-y-auto snap-y snap-mandatory flex flex-col gap-4 pb-24 no-scrollbar">
+          {list.map((c, i) => (
+            <div key={i} className="snap-start snap-always w-full flex-shrink-0">
+              <ContentCard item={c} index={i} featured={i === 0 && cat === "Semua"} />
             </div>
-          </section>
-        </>
+          ))}
+        </div>
       )}
-    </Screen>
+    </>
   );
 }
