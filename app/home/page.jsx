@@ -19,7 +19,9 @@ import {
 import { Screen, SectionHeader, Card, Stagger, rp } from "@/components/affiliate/ui";
 import { ProductCard } from "@/components/affiliate/cards";
 import { products, activities } from "@/data/mock";
-import { Separator } from "@/components/ui/separator";
+import { Separator } from "@/components/ui/separator";  
+import { useRouter } from "next/navigation";
+
 
 // Gunakan Carousel dari Shadcn UI untuk Slider Banner
 import {
@@ -96,6 +98,7 @@ const tipsArticles = [
 ];
 
 export default function HomePage() {
+  const router = useRouter();
   return (
     <div className="min-h-screen bg-background pb-12 text-foreground">
       {/* Header dengan background gradasi biru khas Konksi */}
@@ -209,13 +212,13 @@ export default function HomePage() {
           </Carousel>
         </div>
 
-        {/* Daily Check-in & Misi Hari ini */}
+      {/* Daily Check-in & Misi Hari ini */}
         <div className="mt-4 rounded-lg bg-card border border-border shadow-sm p-4">
           {/* Header Check-in */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600">
-                <CheckCircle2 className="h-5 w-5" />
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-amber-500/10 text-amber-600">
+                <Coins className="h-5 w-5" />
               </span>
               <div>
                 <p className="text-[13px] font-bold text-foreground">Daily Check-in</p>
@@ -230,7 +233,7 @@ export default function HomePage() {
             </button>
           </div>
 
-          {/* Progress Timeline 7 Hari */}
+          {/* Progress Timeline 7 Hari dengan Ikon Koin */}
           <div className="relative mt-6 flex items-center justify-between px-1">
             {/* Dotted Line Background */}
             <div className="absolute left-6 right-6 top-4 h-[2px] -translate-y-1/2 border-t-2 border-dashed border-muted/60 z-0"></div>
@@ -238,13 +241,13 @@ export default function HomePage() {
             {checkInDays.map((item, idx) => (
               <div key={idx} className="relative z-10 flex flex-col items-center gap-1.5">
                 {item.status === "completed" && (
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-100 ring-2 ring-emerald-500 ring-offset-1 ring-offset-card">
-                    <Check className="h-4 w-4 text-emerald-600 stroke-[3]" />
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-amber-100 ring-2 ring-amber-500 ring-offset-1 ring-offset-card text-amber-600 shadow-sm">
+                    <Coins className="h-4 w-4" />
                   </div>
                 )}
                 {item.status === "upcoming" && (
                   <div className="flex h-8 w-8 items-center justify-center rounded-full bg-card border-2 border-muted-foreground/20 text-muted-foreground/40">
-                    <Check className="h-4 w-4 stroke-[3]" />
+                    <Coins className="h-4 w-4" />
                   </div>
                 )}
                 {item.status === "reward" && (
@@ -253,12 +256,13 @@ export default function HomePage() {
                   </div>
                 )}
                 <span
-                  className={`text-[9px] font-semibold ${item.status === "completed"
-                      ? "text-emerald-600"
+                  className={`text-[9px] font-semibold ${
+                    item.status === "completed"
+                      ? "text-amber-600 font-bold"
                       : item.status === "reward"
-                        ? "text-orange-500"
-                        : "text-muted-foreground"
-                    }`}
+                      ? "text-orange-500 font-bold"
+                      : "text-muted-foreground"
+                  }`}
                 >
                   Hari {item.day}
                 </span>
@@ -269,21 +273,29 @@ export default function HomePage() {
           <Separator className="my-4" />
 
           {/* Misi Hari Ini CTA */}
-          <div className="flex items-center justify-between">
+          <Link 
+            href="/missions" 
+            className="group flex items-center justify-between p-2 -mx-2 rounded-xl hover:bg-muted/50 transition-all cursor-pointer"
+          >
             <div className="flex items-center gap-3">
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600">
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600 shrink-0">
                 <CheckCircle2 className="h-5 w-5" />
               </span>
               <div>
-                <p className="text-[13px] font-bold text-foreground">Misi Hari ini</p>
+                <p className="text-[13px] font-bold text-foreground">Misi Hari Ini</p>
                 <p className="text-[11px] text-muted-foreground">Selesaikan misi ekstra poin!</p>
               </div>
             </div>
-            <div className="flex items-center gap-0.5 text-muted-foreground">
-              <span className="text-[12px] font-bold text-foreground mr-1">0/3</span>
-              <ChevronRight className="h-4 w-4" />
+            
+            <div className="flex items-center gap-2">
+              <span className="rounded-full bg-emerald-500/10 px-2.5 py-1 text-[11px] font-bold text-emerald-600">
+                0/3 Selesai
+              </span>
+              <span className="rounded-full bg-emerald-500 px-3 py-1.5 text-[11px] font-semibold text-white shadow-sm transition-transform group-hover:scale-105">
+                Lihat Misi
+              </span>
             </div>
-          </div>
+          </Link>
         </div>
 
         {/* Jelajahi Layanan Populer */}
@@ -311,9 +323,9 @@ export default function HomePage() {
           <SectionHeader title="Tips Berkonksi" action="Lihat semua" />
           <div className="mt-3 flex flex-col gap-3">
             {tipsArticles.map((tip) => (
-              <Link 
-                href={`/tips/${tip.id}`} 
-                key={tip.id} 
+              <Link
+                href={`/tips/${tip.id}`}
+                key={tip.id}
                 className="flex gap-3 rounded-lg border border-border bg-card p-3 shadow-sm hover:bg-muted/50 transition"
               >
                 <div className="h-16 w-20 shrink-0 rounded-md bg-muted overflow-hidden relative">

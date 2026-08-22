@@ -21,7 +21,7 @@ export default function LoginPage() {
 
   return (
     // Background utama. Pastikan path dan ekstensi file gambarnya sudah benar (misal .jpg atau .png)
-    <div className="min-h-screen flex flex-col justify-center items-center p-6 bg-[url('/img/illustrations/login-bg.jpe')] bg-cover bg-center relative overflow-hidden">
+    <div className="min-h-screen flex flex-col justify-center items-center p-6 bg-slate-50 relative overflow-hidden">
       
       {/* Container utama */}
       <div className="relative w-full max-w-[400px] mt-32 z-10"> 
