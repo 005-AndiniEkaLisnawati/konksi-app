@@ -101,9 +101,9 @@ export default function ProfilePage() {
           {[
             { icon: User, label: "Tampilan Profil", href: "/profile/my-profile" },
             { icon: LinkIcon, label: "Biolink", href: "/profile/biolink" },
-            { icon: Palette, label: "Personalisasi", href: "/profile/personalisasi" },
-            { icon: BarChart3, label: "Statistik", href: "/profile/statistik" },
-            { icon: Bookmark, label: "Tersimpan", href: "/profile/tersimpan" },
+            { icon: Palette, label: "Personalisasi", href: "/profile/personalization" },
+            { icon: BarChart3, label: "Statistik", href: "/profile/statistic" },
+            { icon: Bookmark, label: "Tersimpan", href: "/profile/saved" },
             { icon: Lightbulb, label: "Tips & Trick", href: "/profile/tips" },
             { icon: HelpCircle, label: "FAQ", href: "/profile/faq" },
           ].map((menu, idx) => {
